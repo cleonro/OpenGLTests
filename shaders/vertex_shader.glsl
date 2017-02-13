@@ -16,7 +16,9 @@
 //}
 
 #version 410 core
-out vec4 vertexColor;
+//out vec4 vertexColor;
+//out vec4 vertexColor2;
+layout (location = 0) in vec4 offset;
 void main(void)
 {
     const vec4 vertices[3] = vec4[3](
@@ -29,6 +31,7 @@ void main(void)
 		vec4(0.0, 1.0, 0.0, 1.0),
 		vec4(0.0, 0.0, 1.0, 1.0)
 		);
-    vertexColor = colors[gl_VertexID];
-    gl_Position = vertices[gl_VertexID];
+//    vertexColor = colors[gl_VertexID];
+//    vertexColor2 = colors[gl_VertexID];
+    gl_Position = vertices[gl_VertexID] + offset;
 }

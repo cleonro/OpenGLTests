@@ -2,5 +2,7 @@
     <qresource prefix="/graphics">
         <file>shaders/fragment_shader.glsl</file>
         <file>shaders/vertex_shader.glsl</file>
+        <file>shaders/tesselation_control_shader.glsl</file>
+        <file>shaders/tesselation_evaluation_shader.glsl</file>
     </qresource>
 </RCC>

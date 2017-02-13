@@ -34,7 +34,9 @@ FORMS    += mainwindow.ui
 
 DISTFILES += \
     shaders/vertex_shader.glsl \
-    shaders/fragment_shader.glsl
+    shaders/fragment_shader.glsl \
+    shaders/tesselation_control_shader.glsl \
+    shaders/tesselation_evaluation_shader.glsl
 
 RESOURCES += \
     resource.qrc

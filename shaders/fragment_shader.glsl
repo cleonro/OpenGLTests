@@ -14,9 +14,10 @@
 //}
 
 #version 410 core
-in vec4 vertexColor;
+//in vec4 vertexColor2;
 out vec4 color;
 void main(void)
 {
-    color = vertexColor;
+//    color = vertexColor2;
+    color = vec4(0.0, 0.5, 0.3, 1.0);
 }

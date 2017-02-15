@@ -96,9 +96,9 @@ void GLWidget::initializeGL()
 
     m_shaderProgram->addShader(m_vertexShader);
     m_shaderProgram->addShader(m_fragmentShader);
-    m_shaderProgram->addShader(m_tesselationControlShader);
-    m_shaderProgram->addShader(m_tesselationEvaluationShader);
-    m_shaderProgram->addShader(m_geometryShader);
+//    m_shaderProgram->addShader(m_tesselationControlShader);
+//    m_shaderProgram->addShader(m_tesselationEvaluationShader);
+    //m_shaderProgram->addShader(m_geometryShader);
 
     if(m_shaderProgram->link())
     {
@@ -113,7 +113,7 @@ void GLWidget::initializeGL()
     glCreateVertexArrays(1, &m_glVAO);
     glBindVertexArray(m_glVAO);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
 
@@ -138,8 +138,8 @@ void GLWidget::paintGL()
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glPointSize(4.0f);
     glVertexAttrib4fv(0, attrib);
-    //glDrawArrays(GL_TRIANGLES, 0, 3);
-    glDrawArrays(GL_PATCHES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    //glDrawArrays(GL_PATCHES, 0, 3);
 
     m_shaderProgram->release();
 }

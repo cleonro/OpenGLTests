@@ -1,9 +1,13 @@
+#include <GL/glew.h>
+
 #include "glwidget.h"
 
 #include <cmath>
 
 #include <QOpenGLShaderProgram>
 #include <QOpenGLShader>
+
+
 
 GLWidget::GLWidget(QWidget *parent)
     : QOpenGLWidget(parent)
@@ -12,10 +16,11 @@ GLWidget::GLWidget(QWidget *parent)
     , m_fragmentShader(nullptr)
     , m_tesselationControlShader(nullptr)
     , m_tesselationEvaluationShader(nullptr)
+    , m_geometryShader(nullptr)
 {
     connect(&m_timer, &QTimer::timeout, this, &GLWidget::onTimer);
     m_timer.setInterval(1000.0 / 60.0);
-    m_timer.start();
+    //m_timer.start();
 }
 
 GLWidget::~GLWidget()
@@ -35,6 +40,10 @@ void GLWidget::onTimer()
 
 void GLWidget::initializeGL()
 {
+    glewExperimental = GL_TRUE;
+    glewInit();
+    this->initializeOpenGLFunctions();
+
     glClearColor(0.2, 0.3, 0.5, 0.7);
 
     m_shaderProgram = new QOpenGLShaderProgram();
@@ -42,6 +51,7 @@ void GLWidget::initializeGL()
     m_fragmentShader = new QOpenGLShader(QOpenGLShader::Fragment);
     m_tesselationControlShader = new QOpenGLShader(QOpenGLShader::TessellationControl);
     m_tesselationEvaluationShader = new QOpenGLShader(QOpenGLShader::TessellationEvaluation);
+    m_geometryShader = new QOpenGLShader(QOpenGLShader::Geometry);
 
     if(m_vertexShader->compileSourceFile(":/graphics/shaders/vertex_shader.glsl"))
     {
@@ -75,11 +85,20 @@ void GLWidget::initializeGL()
     {
         qDebug() << "tesselation evaluation shader not compiled!";
     }
+    if(m_geometryShader->compileSourceFile(":/graphics/shaders/geometry_shader.glsl"))
+    {
+        qDebug() << "geometry shader compiled.";
+    }
+    else
+    {
+        qDebug() << "geometry shader not compiled!";
+    }
 
     m_shaderProgram->addShader(m_vertexShader);
     m_shaderProgram->addShader(m_fragmentShader);
-//    m_shaderProgram->addShader(m_tesselationControlShader);
-//    m_shaderProgram->addShader(m_tesselationEvaluationShader);
+    m_shaderProgram->addShader(m_tesselationControlShader);
+    m_shaderProgram->addShader(m_tesselationEvaluationShader);
+    m_shaderProgram->addShader(m_geometryShader);
 
     if(m_shaderProgram->link())
     {
@@ -90,7 +109,8 @@ void GLWidget::initializeGL()
         qDebug() << "shader program not linked!";
     }
 
-    glGenVertexArrays(1, &m_glVAO);
+    //glGenVertexArrays(1, &m_glVAO);
+    glCreateVertexArrays(1, &m_glVAO);
     glBindVertexArray(m_glVAO);
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -116,9 +136,10 @@ void GLWidget::paintGL()
     m_shaderProgram->bind();
 
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glPointSize(40.0f);
+    glPointSize(4.0f);
     glVertexAttrib4fv(0, attrib);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    //glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_PATCHES, 0, 3);
 
     m_shaderProgram->release();
 }

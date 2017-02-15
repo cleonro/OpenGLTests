@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets opengl
 
@@ -36,7 +36,10 @@ DISTFILES += \
     shaders/vertex_shader.glsl \
     shaders/fragment_shader.glsl \
     shaders/tesselation_control_shader.glsl \
-    shaders/tesselation_evaluation_shader.glsl
+    shaders/tesselation_evaluation_shader.glsl \
+    shaders/geometry_shader.glsl
 
 RESOURCES += \
     resource.qrc
+
+LIBS += -lGLEW

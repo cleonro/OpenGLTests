@@ -4,5 +4,6 @@
         <file>shaders/vertex_shader.glsl</file>
         <file>shaders/tesselation_control_shader.glsl</file>
         <file>shaders/tesselation_evaluation_shader.glsl</file>
+        <file>shaders/geometry_shader.glsl</file>
     </qresource>
 </RCC>

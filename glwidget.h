@@ -2,12 +2,13 @@
 #define GLWIDGET_H
 
 #include <QOpenGLWidget>
+#include <QOpenGLFunctions>
 #include <QTimer>
 
 class QOpenGLShaderProgram;
 class QOpenGLShader;
 
-class GLWidget : public QOpenGLWidget
+class GLWidget : public QOpenGLWidget, public QOpenGLFunctions
 {
 public:
     GLWidget(QWidget *parent = nullptr);
@@ -29,6 +30,7 @@ private:
     QOpenGLShader           *m_fragmentShader;
     QOpenGLShader           *m_tesselationControlShader;
     QOpenGLShader           *m_tesselationEvaluationShader;
+    QOpenGLShader           *m_geometryShader;
 
     GLuint          m_glVAO;
 

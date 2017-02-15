@@ -13,11 +13,11 @@
 //    color = vec4(0.0, 0.5, 0.3, 1.0);
 //}
 
-#version 410 core
-//in vec4 vertexColor2;
+#version 450 core
+in vec4 vertexColor;
 out vec4 color;
 void main(void)
 {
-//    color = vertexColor2;
-    color = vec4(0.0, 0.5, 0.3, 1.0);
+    color = vertexColor;
+//    color = vec4(0.0, 0.5, 0.3, 1.0);
 }

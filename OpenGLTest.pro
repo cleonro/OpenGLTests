@@ -42,4 +42,6 @@ DISTFILES += \
 RESOURCES += \
     resource.qrc
 
-LIBS += -lGLEW
+unix:!macx {
+ LIBS += -lGLEW
+}

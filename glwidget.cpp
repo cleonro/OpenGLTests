@@ -1,4 +1,8 @@
+#include <QtGlobal>
+
+#ifndef Q_OS_MACOS
 #include <GL/glew.h>
+#endif
 
 #include "glwidget.h"
 
@@ -40,8 +44,10 @@ void GLWidget::onTimer()
 
 void GLWidget::initializeGL()
 {
+#ifndef Q_OS_MACOS
     glewExperimental = GL_TRUE;
     glewInit();
+#endif
     this->initializeOpenGLFunctions();
 
     glClearColor(0.2, 0.3, 0.5, 0.7);
@@ -109,8 +115,11 @@ void GLWidget::initializeGL()
         qDebug() << "shader program not linked!";
     }
 
-    //glGenVertexArrays(1, &m_glVAO);
+#ifdef Q_OS_MACOS
+    glGenVertexArrays(1, &m_glVAO);
+#else
     glCreateVertexArrays(1, &m_glVAO);
+#endif
     glBindVertexArray(m_glVAO);
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

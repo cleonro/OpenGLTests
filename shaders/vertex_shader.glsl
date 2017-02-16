@@ -15,7 +15,7 @@
 //    gl_Position = vec4(0.0, 0.0, 0.5, 1.0);
 //}
 
-#version 450 core
+#version 410 core
 out vec4 vertexColor;
 //out vec4 vertexColor2;
 layout (location = 0) in vec4 offset;

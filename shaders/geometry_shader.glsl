@@ -1,4 +1,4 @@
-#version 450 core
+#version 410 core
 
 layout (triangles) in;
 layout (points, max_vertices = 3) out;

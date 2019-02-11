@@ -118,7 +118,8 @@ void GLWidget::initializeGL()
 #ifdef Q_OS_MACOS
     glGenVertexArrays(1, &m_glVAO);
 #else
-    glCreateVertexArrays(1, &m_glVAO);
+    //glCreateVertexArrays(1, &m_glVAO);
+    glGenVertexArrays(1, &m_glVAO);
 #endif
     glBindVertexArray(m_glVAO);
 
@@ -145,7 +146,7 @@ void GLWidget::paintGL()
     m_shaderProgram->bind();
 
 //    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    glPointSize(4.0f);
+    //glPointSize(4.0f);
     glVertexAttrib4fv(0, attrib);
     glDrawArrays(GL_TRIANGLES, 0, 3);
     //glDrawArrays(GL_PATCHES, 0, 3);

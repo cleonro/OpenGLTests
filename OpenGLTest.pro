@@ -46,6 +46,7 @@ unix:!macx {
 }
 
 win32 {
-  DEPENDPATH += "c:/Program Files (x86)/NVIDIA Corporation/Nsight Visual Studio Edition 5.4/Monitor/glew/lib/Release/x64/"
-  LIBS += -L"c:/Program Files (x86)/NVIDIA Corporation/Nsight Visual Studio Edition 5.4/Monitor/glew/lib/Release/x64/" -lglew32
+  INCLUDEPATH += "c:/Program Files (x86)/NVIDIA Corporation/Nsight Visual Studio Edition 6.0/Monitor/glew/include/"
+  DEPENDPATH += "c:/Program Files (x86)/NVIDIA Corporation/Nsight Visual Studio Edition 6.0/Monitor/glew/lib/Release/x64/"
+  LIBS += -L"c:/Program Files (x86)/NVIDIA Corporation/Nsight Visual Studio Edition 6.0/Monitor/glew/lib/Release/x64/" -lglew32
 }
